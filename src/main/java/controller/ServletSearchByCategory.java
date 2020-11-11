@@ -1,5 +1,6 @@
 package controller;
 
+import dao.IProduct;
 import dao.ProductImpl;
 import model.Product;
 
@@ -14,16 +15,16 @@ import java.util.List;
 
 @WebServlet(name = "ServletSearchByCategory",urlPatterns = "/search")
 public class ServletSearchByCategory extends HttpServlet {
-    ProductImpl products = new ProductImpl();
+    IProduct products = new ProductImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String productName = request.getParameter("search");
-        List<Product> productList = products.searchByCategory(productName);
-        request.setAttribute("productCate",productList);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchProductsByName.jsp");
-        requestDispatcher.forward(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String productName = request.getParameter("search");
+        List<Product> productList = products.searchByCategory(productName);
+        request.setAttribute("listPro",productList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchProductsByName.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import dao.IProduct;
 import dao.ProductImpl;
 import model.Product;
 
@@ -10,10 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "ServletEditPro",urlPatterns = "/edit")
 public class ServletEditPro extends HttpServlet {
-    ProductImpl products = new ProductImpl();
+    IProduct products = new ProductImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("ProName");
@@ -25,7 +27,9 @@ public class ServletEditPro extends HttpServlet {
 
         Product product = new Product(id,name,ProPrice,ProQuantity,ProColor,ProDes,Category);
         products.editPro(product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
+        List<Product> listPro = products.listAllProduct();
+        request.setAttribute("listPro", listPro);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("prolist.jsp");
         dispatcher.forward(request, response);
     }
 

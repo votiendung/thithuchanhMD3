@@ -13,6 +13,25 @@ public class Product {
     public Product() {
     }
 
+    public Product(int proID, String proName, double proPrice, int proQuantity, String proColor, String proDes, int categoryID) {
+        this.proID = proID;
+        this.proName = proName;
+        this.proPrice = proPrice;
+        this.proQuantity = proQuantity;
+        this.proColor = proColor;
+        this.proDes = proDes;
+        this.categoryID = categoryID;
+    }
+
+    public Product(String proName, double proPrice, int proQuantity, String proColor, String proDes, int categoryID) {
+        this.proName = proName;
+        this.proPrice = proPrice;
+        this.proQuantity = proQuantity;
+        this.proColor = proColor;
+        this.proDes = proDes;
+        this.categoryID = categoryID;
+    }
+
     public Product(int proID, String proName, double proPrice, int proQuantity, String proColor, String proDes, String categoryName) {
         this.proID = proID;
         this.proName = proName;
@@ -37,6 +56,8 @@ public class Product {
     public int getProID() {
         return proID;
     }
+
+
 
     public Product(String proName, double proPrice, int proQuantity, String proColor, String proDes, String categoryName) {
         this.proName = proName;

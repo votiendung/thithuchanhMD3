@@ -1,5 +1,6 @@
 package controller;
 
+import dao.IProduct;
 import dao.ProductImpl;
 import model.Product;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 @WebServlet(name = "ServletDeletePro",urlPatterns = "/delete")
 public class ServletDeletePro extends HttpServlet {
-    ProductImpl products = new ProductImpl();
+    IProduct products = new ProductImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -22,10 +23,9 @@ public class ServletDeletePro extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         products.deletePro(id);
-
         List<Product> productList = products.listAllProduct();
-        request.setAttribute("listUser", productList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("list.jsp");
+        request.setAttribute("listPro", productList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("prolist.jsp");
         dispatcher.forward(request, response);
     }
 }

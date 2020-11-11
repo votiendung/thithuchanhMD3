@@ -14,6 +14,16 @@
 </head>
 <body>
 <%--proName,proPrice,proQuantity,proColor,proDes,categoryName--%>
+<div class="input-group md-form form-sm form-1 pl-0">
+    <form action="/search">
+<%--        <div class="input-group-prepend">--%>
+<%--    <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"--%>
+<%--                                                                        aria-hidden="true"></i></span>--%>
+<%--        </div>--%>
+        <input class="form-control my-0 py-1" type="text" name="search" placeholder="Search" aria-label="Search">
+        <input type="submit" class="btn btn-primary" value="Search">
+    </form>
+</div>
 
 <div class="container">
     <div class="row">
@@ -37,7 +47,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${requestScope['listPro']}" var="pro" >
+            <c:forEach items="${listPro}" var="pro" >
                 <tr>
                         <%--                <th scope="row">1</th>--%>
                     <td>${pro.getProName()}</td>
@@ -49,10 +59,10 @@
                     <td>
 
 
-                            <a href="/edit" style="float: left; margin-right: 70px"><div class="col-lg-1">
+                            <a href="/edit?id=${pro.getProID()} " style="float: left; margin-right: 70px"><div class="col-lg-1">
                                 <button type="button" class="btn btn-primary">edit</button></div>
                             </a>
-                         <a href="/delete" style="float: left; margin-right: 70px"><div class="col-lg-1">
+                         <a href="/delete?id=${pro.getProID()}" style="float: left; margin-right: 70px"><div class="col-lg-1">
                                 <button type="button" class="btn btn-primary">delete</button></div>
                             </a>
 

@@ -15,15 +15,16 @@ import java.io.IOException;
 public class ServletAddNewPro extends HttpServlet {
     ProductImpl products = new ProductImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("ProName");
-        double ProPrice = Double.parseDouble(request.getParameter("ProPrice"));
-        int ProQuantity = Integer.parseInt(request.getParameter("ProQuantity"));
-        String ProColor = request.getParameter("ProColor");
-        String ProDes = request.getParameter("ProDes");
-        String Category = request.getParameter("Category");
+        String name = request.getParameter("name");
+        double proprice = Double.parseDouble(request.getParameter("price"));
+        int proQuantity = Integer.parseInt(request.getParameter("quantity"));
+        String proColor = request.getParameter("color");
+        String proDes = request.getParameter("des");
+        int CategoryID = Integer.parseInt(request.getParameter("cateID"));
 
-        Product product = new Product(name, ProPrice, ProQuantity,ProColor,ProDes,Category);
+        Product product = new Product(name, proprice, proQuantity,proColor,proDes,CategoryID);
         products.addNewPro(product);
+//        request.setAttribute("product",product);
         RequestDispatcher dispatcher = request.getRequestDispatcher("create.jsp");
         dispatcher.forward(request, response);
     }
